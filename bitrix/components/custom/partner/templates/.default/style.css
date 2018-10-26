@@ -1,64 +1,71 @@
 div.sections table td {
-	padding-right:10px;
-	padding-top:10px;
+    padding-right: 10px;
+    padding-top: 10px;
 }
 
 .alert {
-	color: red;
-	padding-left: 0px;
-	font-size: 14pt;
+    color: red;
+    padding-left: 0px;
+    font-size: 14pt;
 }
 
-.btn{
-	background: #159ebb;
-	color: white;
+.btn {
+    background: #159ebb;
+    color: white;
 }
 
 .tabs {
-	list-style-type: none;
-	padding: 0;
-	margin: 0;
-	position: relative;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
 }
+
 .tabs:after {
-	content: "";
-	clear: both;
-	display: block;
-	height: 240px;
+    content: "";
+    clear: both;
+    display: block;
+    height: 240px;
 }
+
 .tabs li {
-	float: left;
+    float: left;
 }
+
 .tabs li > input {
-	display: none;
+    display: none;
 }
+
 .tabs li > label {
-	display: inline-block;
-	border: 1px solid #159ebb;
-	border-right-width: 0;
-	border-bottom-width: 0;
-	height: 30px;
-	line-height: 30px;
-	padding: 2px 20px;
-	cursor: pointer;
-	user-select: none;
-	border-top-left-radius: 7px;
-	border-top-right-radius: 7px;
+    display: inline-block;
+    border: 1px solid #159ebb;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    height: 30px;
+    line-height: 30px;
+    padding: 2px 20px;
+    cursor: pointer;
+    user-select: none;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
 }
+
 .tabs li:last-child > label {
-	border-right-width: 1px;
+    border-right-width: 1px;
 }
+
 .tabs .tab-content {
-	display: none;
-	position: absolute;
-	left: 0;
-	padding: 20px;
-	height: 200px;
+    display: none;
+    position: absolute;
+    left: 0;
+    padding: 20px;
+    height: 200px;
 }
- 
+
 .tabs li > input:checked + label {
-	background-color: #159ebb;
+    background-color: #159ebb;
 }
+
 .tabs li > input:checked ~ .tab-content {
-	display: block;
+    display: block;
 }

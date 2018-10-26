@@ -167,10 +167,10 @@ if (!empty($arParams['LABEL_PROP_POSITION'])) {
                     <div class="product-item-detail-slider-container" id="<?= $itemIds['BIG_SLIDER_ID'] ?>">
                         <span class="product-item-detail-slider-close" data-entity="close-popup"></span>
                         <div class="product-item-detail-slider-block
-						<?= ($arParams['IMAGE_RESOLUTION'] === '1by1' ? 'product-item-detail-slider-block-square' : '') ?>"
+                <?= ($arParams['IMAGE_RESOLUTION'] === '1by1' ? 'product-item-detail-slider-block-square' : '') ?>"
                              data-entity="images-slider-block">
-                            <span class="product-item-detail-slider-left" data-entity="slider-control-left"
-                                  style="display: none;"></span>
+                <span class="product-item-detail-slider-left" data-entity="slider-control-left"
+                      style="display: none;"></span>
                             <span class="product-item-detail-slider-right" data-entity="slider-control-right"
                                   style="display: none;"></span>
                             <div class="product-item-label-text <?= $labelPositionClass ?>"
@@ -487,11 +487,11 @@ if (!empty($arParams['LABEL_PROP_POSITION'])) {
                                                     <div class="product-item-detail-info-container-title">
                                                         <?= $arParams['MESS_PRICE_RANGES_TITLE'] ?>
                                                         <span data-entity="price-ranges-ratio-header">
-														(<?= (Loc::getMessage(
+              (<?= (Loc::getMessage(
                                                                 'CT_BCE_CATALOG_RATIO_PRICE',
                                                                 array('#RATIO#' => ($useRatio ? $measureRatio : '1') . ' ' . $actualItem['ITEM_MEASURE']['TITLE'])
                                                             )) ?>)
-													</span>
+            </span>
                                                     </div>
                                                     <dl class="product-item-detail-properties"
                                                         data-entity="price-ranges-body">
@@ -568,18 +568,18 @@ if (!empty($arParams['LABEL_PROP_POSITION'])) {
                                                                 <?= $arParams['MESS_SHOW_MAX_QUANTITY'] ?>:
                                                                 <span class="product-item-quantity"
                                                                       data-entity="quantity-limit-value">
-																<?
-                                                                if ($arParams['SHOW_MAX_QUANTITY'] === 'M') {
-                                                                    if ((float)$actualItem['CATALOG_QUANTITY'] / $measureRatio >= $arParams['RELATIVE_QUANTITY_FACTOR']) {
-                                                                        echo $arParams['MESS_RELATIVE_QUANTITY_MANY'];
-                                                                    } else {
-                                                                        echo $arParams['MESS_RELATIVE_QUANTITY_FEW'];
-                                                                    }
-                                                                } else {
-                                                                    echo $actualItem['CATALOG_QUANTITY'] . ' ' . $actualItem['ITEM_MEASURE']['TITLE'];
-                                                                }
-                                                                ?>
-															</span>
+            <?
+            if ($arParams['SHOW_MAX_QUANTITY'] === 'M') {
+                if ((float)$actualItem['CATALOG_QUANTITY'] / $measureRatio >= $arParams['RELATIVE_QUANTITY_FACTOR']) {
+                    echo $arParams['MESS_RELATIVE_QUANTITY_MANY'];
+                } else {
+                    echo $arParams['MESS_RELATIVE_QUANTITY_FEW'];
+                }
+            } else {
+                echo $actualItem['CATALOG_QUANTITY'] . ' ' . $actualItem['ITEM_MEASURE']['TITLE'];
+            }
+            ?>
+        </span>
                                                             </div>
                                                         </div>
                                                         <?
@@ -598,19 +598,19 @@ if (!empty($arParams['LABEL_PROP_POSITION'])) {
                                                     <div class="product-item-detail-info-container-title"><?= Loc::getMessage('CATALOG_QUANTITY') ?></div>
                                                     <div class="product-item-amount">
                                                         <div class="product-item-amount-field-container">
-                                                            <span class="product-item-amount-field-btn-minus no-select"
-                                                                  id="<?= $itemIds['QUANTITY_DOWN_ID'] ?>"></span>
+            <span class="product-item-amount-field-btn-minus no-select"
+                  id="<?= $itemIds['QUANTITY_DOWN_ID'] ?>"></span>
                                                             <input class="product-item-amount-field"
                                                                    id="<?= $itemIds['QUANTITY_ID'] ?>" type="number"
                                                                    value="<?= $price['MIN_QUANTITY'] ?>">
                                                             <span class="product-item-amount-field-btn-plus no-select"
                                                                   id="<?= $itemIds['QUANTITY_UP_ID'] ?>"></span>
                                                             <span class="product-item-amount-description-container">
-															<span id="<?= $itemIds['QUANTITY_MEASURE'] ?>">
-																<?= $actualItem['ITEM_MEASURE']['TITLE'] ?>
-															</span>
-															<span id="<?= $itemIds['PRICE_TOTAL'] ?>"></span>
-														</span>
+               <span id="<?= $itemIds['QUANTITY_MEASURE'] ?>">
+                <?= $actualItem['ITEM_MEASURE']['TITLE'] ?>
+            </span>
+            <span id="<?= $itemIds['PRICE_TOTAL'] ?>"></span>
+        </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -717,29 +717,29 @@ if (!empty($arParams['LABEL_PROP_POSITION'])) {
                             foreach ($arResult['OFFER_GROUP_VALUES'] as $offerId) {
                                 ?>
                                 <span id="<?= $itemIds['OFFER_GROUP'] . $offerId ?>" style="display: none;">
-								<?
-                                $APPLICATION->IncludeComponent(
-                                    'bitrix:catalog.set.constructor',
-                                    '.default',
-                                    array(
-                                        'CUSTOM_SITE_ID' => isset($arParams['CUSTOM_SITE_ID']) ? $arParams['CUSTOM_SITE_ID'] : null,
-                                        'IBLOCK_ID' => $arResult['OFFERS_IBLOCK'],
-                                        'ELEMENT_ID' => $offerId,
-                                        'PRICE_CODE' => $arParams['PRICE_CODE'],
-                                        'BASKET_URL' => $arParams['BASKET_URL'],
-                                        'OFFERS_CART_PROPERTIES' => $arParams['OFFERS_CART_PROPERTIES'],
-                                        'CACHE_TYPE' => $arParams['CACHE_TYPE'],
-                                        'CACHE_TIME' => $arParams['CACHE_TIME'],
-                                        'CACHE_GROUPS' => $arParams['CACHE_GROUPS'],
-                                        'TEMPLATE_THEME' => $arParams['~TEMPLATE_THEME'],
-                                        'CONVERT_CURRENCY' => $arParams['CONVERT_CURRENCY'],
-                                        'CURRENCY_ID' => $arParams['CURRENCY_ID']
-                                    ),
-                                    $component,
-                                    array('HIDE_ICONS' => 'Y')
-                                );
-                                ?>
-							</span>
+                        <?
+                        $APPLICATION->IncludeComponent(
+                            'bitrix:catalog.set.constructor',
+                            '.default',
+                            array(
+                                'CUSTOM_SITE_ID' => isset($arParams['CUSTOM_SITE_ID']) ? $arParams['CUSTOM_SITE_ID'] : null,
+                                'IBLOCK_ID' => $arResult['OFFERS_IBLOCK'],
+                                'ELEMENT_ID' => $offerId,
+                                'PRICE_CODE' => $arParams['PRICE_CODE'],
+                                'BASKET_URL' => $arParams['BASKET_URL'],
+                                'OFFERS_CART_PROPERTIES' => $arParams['OFFERS_CART_PROPERTIES'],
+                                'CACHE_TYPE' => $arParams['CACHE_TYPE'],
+                                'CACHE_TIME' => $arParams['CACHE_TIME'],
+                                'CACHE_GROUPS' => $arParams['CACHE_GROUPS'],
+                                'TEMPLATE_THEME' => $arParams['~TEMPLATE_THEME'],
+                                'CONVERT_CURRENCY' => $arParams['CONVERT_CURRENCY'],
+                                'CURRENCY_ID' => $arParams['CURRENCY_ID']
+                            ),
+                            $component,
+                            array('HIDE_ICONS' => 'Y')
+                        );
+                        ?>
+                    </span>
                                 <?
                             }
                         }
@@ -814,7 +814,7 @@ if (!empty($arParams['LABEL_PROP_POSITION'])) {
                                             </a>
                                         </li>
                                         <?
-                                    }?>
+                                    } ?>
                                 </ul>
                             </div>
                         </div>
@@ -940,33 +940,25 @@ if (!empty($arParams['LABEL_PROP_POSITION'])) {
                             }
 
                             if (!empty($arResult['PROPERTIES']['PARTNER']['VALUE'])) { //Вкладка партнеры, содержание вкладки
-								
-                                $dbEl = CIBlockElement::GetList(Array(), Array(
-                                    "IBLOCK_TYPE" => "references",
-                                    "IBLOCK_ID" => $arResult['PROPERTIES']['PARTNER']['LINK_IBLOCK_ID'],
-                                    'ID' => $arResult['PROPERTIES']['PARTNER']['VALUE']));
                                 ?>
                                 <div class="product-item-detail-tab-content" data-entity="tab-container"
                                      data-value="partners">
-                                    <? if (!empty($dbEl)) {
+                                    <? if (!empty($arResult['PROPERTIES_FOR_PARTNER'])) {
                                         ?>
                                         <dl class="product-item-detail-properties">
                                             <?
-                                            while ($obEl = $dbEl->GetNextElement()) {
-                                                foreach ($obEl->GetProperties() as $property) {
-
-                                                    $name = $property['NAME'];
-                                                    if ($name == 'Оператор') {
-                                                        $user = CUser::GetByID($property['VALUE'])->fetch();
-                                                        $value = $user['LOGIN'];
-                                                    } else {
-                                                        $value = $property['VALUE'];
-                                                    }
-                                                    ?>
-                                                    <dt><?= $name ?></dt>
-                                                    <dd><?= $value ?></dd>
-                                                    <?
+                                            while ($property = $arResult['PROPERTIES_FOR_PARTNER']->Fetch()) {
+                                                $name = $property['NAME'];
+                                                if ($name == 'Оператор') {
+                                                    $user = CUser::GetByID($property['VALUE'])->Fetch();
+                                                    $value = $user['LOGIN'];
+                                                } else {
+                                                    $value = $property['VALUE'];
                                                 }
+                                                ?>
+                                                <dt><?= $name ?></dt>
+                                                <dd><?= $value ?></dd>
+                                                <?
                                             }
                                             ?>
                                         </dl>
@@ -1438,12 +1430,12 @@ if (!empty($arParams['LABEL_PROP_POSITION'])) {
                 $offerPrice = $offer['ITEM_PRICES'][$offer['ITEM_PRICE_SELECTED']];
                 ?>
                 <span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-				<meta itemprop="sku" content="<?= htmlspecialcharsbx(implode('/', $currentOffersList)) ?>"/>
-				<meta itemprop="price" content="<?= $offerPrice['RATIO_PRICE'] ?>"/>
-				<meta itemprop="priceCurrency" content="<?= $offerPrice['CURRENCY'] ?>"/>
-				<link itemprop="availability"
-                      href="http://schema.org/<?= ($offer['CAN_BUY'] ? 'InStock' : 'OutOfStock') ?>"/>
-			</span>
+                    <meta itemprop="sku" content="<?= htmlspecialcharsbx(implode('/', $currentOffersList)) ?>"/>
+                    <meta itemprop="price" content="<?= $offerPrice['RATIO_PRICE'] ?>"/>
+                    <meta itemprop="priceCurrency" content="<?= $offerPrice['CURRENCY'] ?>"/>
+                    <link itemprop="availability"
+                          href="http://schema.org/<?= ($offer['CAN_BUY'] ? 'InStock' : 'OutOfStock') ?>"/>
+                </span>
                 <?
             }
 
@@ -1451,11 +1443,11 @@ if (!empty($arParams['LABEL_PROP_POSITION'])) {
         } else {
             ?>
             <span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-			<meta itemprop="price" content="<?= $price['RATIO_PRICE'] ?>"/>
-			<meta itemprop="priceCurrency" content="<?= $price['CURRENCY'] ?>"/>
-			<link itemprop="availability"
-                  href="http://schema.org/<?= ($actualItem['CAN_BUY'] ? 'InStock' : 'OutOfStock') ?>"/>
-		</span>
+               <meta itemprop="price" content="<?= $price['RATIO_PRICE'] ?>"/>
+               <meta itemprop="priceCurrency" content="<?= $price['CURRENCY'] ?>"/>
+               <link itemprop="availability"
+                     href="http://schema.org/<?= ($actualItem['CAN_BUY'] ? 'InStock' : 'OutOfStock') ?>"/>
+           </span>
             <?
         }
         ?>
