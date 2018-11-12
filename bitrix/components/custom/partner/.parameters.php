@@ -15,16 +15,6 @@ while ($arr = $rsIBlock->Fetch()) {
     $arIBlock[$id] = '[' . $id . '] ' . $arr['NAME'];
 }
 
-$order = array('sort' => 'asc');
-$tmp = 'sort';
-$rsUsers = CUser::GetList($order, $tmp);
-$arUBlock[0] = '[0] Текущий пользователь';
-
-while ($arr = $rsUsers->Fetch()) {
-    $id = (int)$arr['ID'];
-    $arUBlock[$id] = '[' . $id . '] ' . $arr['LOGIN'];
-}
-
 $arComponentParameters = array(
     "PARAMETERS" => array(
         "CNT_ALL" => array(
@@ -57,12 +47,12 @@ $arComponentParameters = array(
             "VALUES" => $arIBlock,
             'REFRESH' => 'Y',
         ),
-        "PARTNER_OPERATOR" => array(
-            "PARENT" => "BASE",
-            "NAME" => GetMessage("PARTNER_OPERATOR"),
-            "TYPE" => "LIST",
-            "VALUES" => $arUBlock,
-            'REFRESH' => 'Y',
+        "CACHE_TIME"  =>  array("DEFAULT"=>36000000),
+        "CACHE_GROUPS" => array(
+            "PARENT" => "CACHE_SETTINGS",
+            "NAME" => GetMessage("CP_BCST_CACHE_GROUPS"),
+            "TYPE" => "CHECKBOX",
+            "DEFAULT" => "Y",
         ),
     ),
 );

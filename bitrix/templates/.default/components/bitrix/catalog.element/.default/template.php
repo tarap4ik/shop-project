@@ -947,14 +947,7 @@ if (!empty($arParams['LABEL_PROP_POSITION'])) {
                                         ?>
                                         <dl class="product-item-detail-properties">
                                             <?
-                                            while ($property = $arResult['PROPERTIES_FOR_PARTNER']->Fetch()) {
-                                                $name = $property['NAME'];
-                                                if ($name == 'Оператор') {
-                                                    $user = CUser::GetByID($property['VALUE'])->Fetch();
-                                                    $value = $user['LOGIN'];
-                                                } else {
-                                                    $value = $property['VALUE'];
-                                                }
+                                            foreach ($arResult['PROPERTIES_FOR_PARTNER'] as $name => $value) {
                                                 ?>
                                                 <dt><?= $name ?></dt>
                                                 <dd><?= $value ?></dd>

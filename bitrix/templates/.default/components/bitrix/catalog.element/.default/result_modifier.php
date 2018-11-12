@@ -5,7 +5,17 @@
  * @var CatalogElementComponent $component
  */
 
-$arResult['PROPERTIES_FOR_PARTNER'] = CIBlockElement::GetProperty($arResult['PROPERTIES']['PARTNER']['LINK_IBLOCK_ID'], $arResult['PROPERTIES']['PARTNER']['VALUE'], array(), array());
+$arProperties = CIBlockElement::GetProperty($arResult['PROPERTIES']['PARTNER']['LINK_IBLOCK_ID'], $arResult['PROPERTIES']['PARTNER']['VALUE'], array(), array());
+
+while ($property = $arProperties->Fetch()) {
+	$name = $property['NAME'];
+	if ($property['CODE'] == getMessage("CT_BCE_PROPERTY_CODE")) {
+		$user = CUser::GetByID($property['VALUE'])->Fetch();
+		$arResult['PROPERTIES_FOR_PARTNER'][$name] = $user['LOGIN'];
+	} else {
+		$arResult['PROPERTIES_FOR_PARTNER'][$name] = $property['VALUE'];
+	}
+}
 
 $component = $this->getComponent();
 $arParams = $component->applyTemplateModifications();
